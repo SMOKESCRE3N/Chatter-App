@@ -23,6 +23,7 @@ app.use(cors({
   credentials: true               // allow cookies
 }));
 
+app.get("/", (req, res) => res.send("Chatter API is running ✅"));
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
