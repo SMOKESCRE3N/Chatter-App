@@ -1,0 +1,18 @@
+// import express from "express";
+
+// const router = express.Router();
+
+// router.get("/", (req, res) => {
+//   res.send("Users route working");
+// });
+
+// export default router;
+import express from "express";
+import { getUsersForSidebar } from "../controllers/user.controller.js";
+import { protectRoute } from "../middleware/protectroute.js";
+
+const router = express.Router();
+
+router.get("/", protectRoute, getUsersForSidebar);
+
+export default router;
