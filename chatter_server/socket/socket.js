@@ -31,7 +31,7 @@ export const getReceiverSocketId = (receiverId) => {
 export const initSocket = (httpServer) => {
   io = new Server(httpServer, {
     cors: {
-      origin: "http://localhost:5173",
+      origin: ["http://localhost:5173","https://chatter-app-fa.vercel.app"],
       credentials: true
     }
   });
