@@ -62,14 +62,14 @@ const ChatWindow = () => {
     <div className="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold">
       {selectedUser.fullName.charAt(0).toUpperCase()}
     </div>
-    {onlineUsers.includes(selectedUser._id) && (
+    {onlineUsers.map(id => id.toString()).includes(selectedUser._id.toString()) && (
       <span className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-gray-900" />
     )}
   </div>
   <div>
     <p className="text-white font-medium">{selectedUser.fullName}</p>
     <p className="text-xs text-gray-500">
-      {onlineUsers.includes(selectedUser._id) ? "Online" : "Offline"}
+      {onlineUsers.map(id => id.toString()).includes(selectedUser._id.toString()) ? "Online" : "Offline"}
     </p>
   </div>
 </div>

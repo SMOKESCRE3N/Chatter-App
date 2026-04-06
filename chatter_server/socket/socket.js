@@ -41,19 +41,16 @@ export const initSocket = (httpServer) => {
     const userId = socket.handshake.query.userId;
 
     if (userId) {
-      userSocketMap[userId] = socket.id;
+      userSocketMap[userId.toString()] = socket.id;
       console.log(`🟢 User connected: ${userId} → socket: ${socket.id}`);
     }
 
-    // Broadcast online users to everyone
     io.emit("getOnlineUsers", Object.keys(userSocketMap));
 
-    // Typing indicators
-    socket.on("typing", ({ receiverId }) => {
-      const receiverSocketId = getReceiverSocketId(receiverId);
-      if (receiverSocketId) {
-        io.to(receiverSocketId).emit("typing", { senderId: userId });
-      }
+    socket.on("disconnect", () => {
+      console.log(`🔴 User disconnected: ${userId}`);
+      delete userSocketMap[userId.toString()];
+      io.emit("getOnlineUsers", Object.keys(userSocketMap));
     });
 
     socket.on("stopTyping", ({ receiverId }) => {

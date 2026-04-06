@@ -42,9 +42,9 @@ const Sidebar = () => {
     <div className="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white font-semibold text-sm">
       {user.fullName.charAt(0).toUpperCase()}
     </div>
-    {onlineUsers.includes(user._id) && (
-      <span className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-gray-900" />
-    )}
+    {onlineUsers.map(id => id.toString()).includes(user._id.toString()) && (
+  <span className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-gray-900" />
+)}
   </div>
 
   {/* Name + badge */}
@@ -52,7 +52,7 @@ const Sidebar = () => {
     <div>
       <p className="text-white text-sm font-medium">{user.fullName}</p>
       <p className="text-gray-500 text-xs">
-        {onlineUsers.includes(user._id) ? "Online" : "Offline"}
+        {onlineUsers.map(id => id.toString()).includes(user._id.toString()) ? "Online" : "Offline"}
       </p>
     </div>
 
