@@ -19,7 +19,7 @@ const httpServer = createServer(app); // needed for socket.io
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-  origin: "http://localhost:5173", // React Vite default port
+  origin: ["http://localhost:5173","https://chatter-app-fa.vercel.app"],// React Vite default port
   credentials: true               // allow cookies
 }));
 
