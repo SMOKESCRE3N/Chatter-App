@@ -33,7 +33,8 @@ export const initSocket = (httpServer) => {
     cors: {
       origin: ["http://localhost:5173","https://chatter-app-fa.vercel.app"],
       credentials: true
-    }
+    },
+    transports: ["websocket", "polling"]
   });
 
   io.on("connection", (socket) => {

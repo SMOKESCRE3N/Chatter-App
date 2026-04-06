@@ -61,9 +61,10 @@ export const SocketProvider = ({ children }) => {
   useEffect(() => {
     if (!authUser) return;
 
-    socketRef.current = io("http://localhost:5000", {
+    socketRef.current = io(import.meta.env.VITE_SOCKET_URL || "http://localhost:5000", {
       query: { userId: authUser._id },
       withCredentials: true,
+      transports: ["websocket", "polling"] 
     });
 
     // New message
