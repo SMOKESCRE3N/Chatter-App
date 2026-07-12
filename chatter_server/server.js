@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import { createServer } from "http";
 import { initSocket } from "./socket/socket.js"
+import aiRoutes from "./routes/ai.js"; 
 
 import authRoutes from "./routes/auth.js";
 import messageRoutes from "./routes/messages.js";
@@ -28,6 +29,7 @@ app.get("/", (req, res) => res.send("Chatter API is running ✅"));
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/ai", aiRoutes);  
 
 // Socket.io
 initSocket(httpServer);
